@@ -92,15 +92,18 @@ export function handleXmldocLink(
 
   // root xmldoc hierarchies automatically
   if (!hierarchy.startsWith("./")) {
-    // they need the lib prefix in the root, too
-    if (!hierarchy.startsWith(props.srcLib)) {
-      hierarchy = `${props.srcLib}-${hierarchy}`;
-    }
-
     hierarchy = `./${hierarchy}`;
   }
 
-  return handleAnyLink({ ...link, href: hierarchy }, props);
+  const res = handleAnyLink({ ...link, href: hierarchy }, props);
+
+  // // they need the lib prefix in the root, too
+  const libPrefix = `./${props.dstLib}`;
+  if (!res.href.startsWith(libPrefix)) {
+    res.href = `${libPrefix}-${res.href.substring("./".length)}`;
+  }
+
+  return res;
 }
 
 /**

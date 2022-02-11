@@ -44,7 +44,7 @@ jobs:
           # Output directory. (required)
           output: docs/
           # The name of the library your input was generated from. (required)
-          src-lib: testlib
+          src-lib: test-lib
           # The vanity name of the library you want docs to use. (required)
           dest-lib: your-lib
           # Informs the formatter your input was sourced from xmldoc. (optional, default 'false')

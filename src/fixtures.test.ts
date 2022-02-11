@@ -82,7 +82,7 @@ describe("fixtures [xmldoc]", () => {
       format({
         input: "*.md\n!index.md",
         output: "docs/",
-        srcLib: "testlib",
+        srcLib: "test-lib",
         dstLib: "your-lib",
         mode: Mode.Xmldoc,
         home: "https://home.com",
