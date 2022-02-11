@@ -60,6 +60,9 @@ export function handleAnyLink(link: Link, props: HandlerProperties): Link {
   // we also want to replace all instances of {srcLib} with {dstLib}
   res.href = res.href.replace(new RegExp(props.srcLib, "g"), props.dstLib);
 
+  // we also want to remove double hyphens, as readme.com doesn't allow that.
+  res.href = res.href.replace(/--/g, "-");
+
   return res;
 }
 

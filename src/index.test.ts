@@ -58,6 +58,25 @@ describe("rainway-doc-format", () => {
         title: "Hello World",
         href: "./your-lib-real",
       });
+
+      // double -- => single -
+      expect(
+        handleAnyLink(
+          {
+            title: "Hello World",
+            href: "./my-lib.real--prop.md",
+          },
+          {
+            srcLib: "my-lib",
+            dstLib: "your-lib",
+            index: "",
+            home: "",
+          }
+        )
+      ).toEqual({
+        title: "Hello World",
+        href: "./your-lib-real-prop",
+      });
     });
   });
 
