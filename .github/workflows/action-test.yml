@@ -1,0 +1,59 @@
+name: action_test
+on:
+  workflow_dispatch:
+
+jobs:
+  action_test:
+    runs-on: ubuntu-latest
+    # Act only test!
+    # Use this locally with `npm run action-test`
+    if: ${{ env.ACT }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          path: "rainway-doc-format"
+      - uses: ./rainway-doc-format
+        with:
+          # Input file(s) globs supported. (required)
+          input: |
+            rainway-doc-format/src/__fixtures__/api-extractor/*.md
+            !rainway-doc-format/src/__fixtures__/api-extractor/index.md
+          # Output directory. (required)
+          output: docs/
+          # The name of the library your input was generated from. (required)
+          src-lib: test-lib
+          # The vanity name of the library you want docs to use. (required)
+          dest-lib: your-lib
+          # Informs the formatter your input was sourced from xmldoc. (optional, default 'false')
+          xmldoc: 'false'
+          # Informs the formatter your input was sourced from api-extractor. (optional, default 'true')
+          api-extractor: 'true'
+          # The url of the root page for the docs. (optional, default '.')
+          index: ./your-lib
+          # The url of the overall docs homepage. (optional, default '.')
+          home: "https://docs.your-site.com"
+      - run: ls -alR rainway-doc-format/src/__fixtures__/api-extractor/docs
+      - run: cat rainway-doc-format/src/__fixtures__/api-extractor/docs/your-lib.md
+      - uses: ./rainway-doc-format
+        with:
+          # Input file(s) globs supported. (required)
+          input: |
+            rainway-doc-format/src/__fixtures__/xmldoc/*.md
+            !rainway-doc-format/src/__fixtures__/xmldoc/index.md
+          # Output directory. (required)
+          output: docs/
+          # The name of the library your input was generated from. (required)
+          src-lib: testlib
+          # The vanity name of the library you want docs to use. (required)
+          dest-lib: your-lib
+          # Informs the formatter your input was sourced from xmldoc. (optional, default 'false')
+          xmldoc: 'true'
+          # Informs the formatter your input was sourced from api-extractor. (optional, default 'true')
+          api-extractor: 'false'
+          # The url of the root page for the docs. (optional, default '.')
+          index: ./your-lib
+          # The url of the overall docs homepage. (optional, default '.')
+          home: "https://docs.your-site.com"
+      - run: ls -alR rainway-doc-format/src/__fixtures__/xmldoc/docs
+      - run: cat rainway-doc-format/src/__fixtures__/xmldoc/docs/your-lib.md

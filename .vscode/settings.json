@@ -1,0 +1,8 @@
+{
+  "files.associations": { "*.json": "jsonc" },
+  "[typescript]": {
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": true
+  },
+  "cSpell.words": ["rainway", "xmldoc"]
+}

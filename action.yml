@@ -1,0 +1,34 @@
+name: 'rainway-doc-format'
+description: 'Rainway documentation formatter'
+inputs:
+  input:
+    required: true
+    description: "Input file(s) globs supported."
+  output:
+    required: true
+    description: "Output directory."
+  src-lib:
+    required: true
+    description: "The name of the library your input was generated from."
+  dest-lib:
+    required: true
+    description: "The vanity name of the library you want docs to use."
+  xmldoc:
+    required: false
+    description: "Informs the formatter your input was sourced from xmldoc."
+    default: 'false'
+  api-extractor:
+    required: false
+    description: "Informs the formatter your input was sourced from api-extractor."
+    default: 'false'
+  index:
+    required: false
+    description: "The url of the root page for the docs."
+    default: '.'
+  home:
+    required: false
+    description: "The url of the overall docs homepage."
+    default: '.'
+runs:
+  using: 'node16'
+  main: 'dist/ncc/index.js'

@@ -1,0 +1,16 @@
+.*
+.vscode/
+
+coverage/
+dist/docs/
+dist/ncc
+dist/action-*
+temp/
+src/
+
+action.yml
+api-extractor.json
+tsconfig.json
+babel.config.js
+
+CONTRIBUTING.md

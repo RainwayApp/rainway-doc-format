@@ -1,0 +1,56 @@
+{
+  "name": "rainway-doc-format",
+  "version": "1.0.0",
+  "description": "Rainway documentation formatter",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "bin": {
+    "rainway-doc-format": "dist/rainway-doc-format.js"
+  },
+  "scripts": {
+    "test": "jest --coverage",
+    "lint": "eslint src --ext .ts",
+    "build": "npm run lint && npm run build-ts && npm run build-ncc && npm run doc",
+    "build-ts": "tsc",
+    "build-ncc": "ncc build dist/action-rainway-doc-format.js --no-cache -s --license licenses.txt -o dist/ncc",
+    "doc": "npm run doc-extract && npm run doc-gen",
+    "doc-extract": "api-extractor run",
+    "doc-gen": "api-documenter markdown --input-folder ./temp --output-folder ./dist/docs",
+    "action-test": "echo Requires https://github.com/nektos/act to run properly! && act -j action_test"
+  },
+  "homepage": "https://rainway.com",
+  "bugs": {
+    "url": "https://forum.rainway.com/"
+  },
+  "author": "Rainway, Inc.",
+  "license": "MIT",
+  "keywords": [
+    "rainway",
+    "documentation",
+    "formatter"
+  ],
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
+    "@microsoft/api-documenter": "^7.15.1",
+    "@microsoft/api-extractor": "^7.19.4",
+    "@types/jest": "^27.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.10.1",
+    "@typescript-eslint/parser": "^5.10.1",
+    "@vercel/ncc": "^0.33.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.4.7",
+    "memfs": "^3.4.1",
+    "prettier": "^2.5.1",
+    "typescript": "^4.5.5"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "@actions/glob": "^0.2.0",
+    "arg": "^5.0.1"
+  }
+}
